@@ -1,0 +1,29 @@
+{
+  "httpMethod": "POST",
+  "headers": {
+    "host": "eo9d411aaot18g.m.pipedream.net",
+    "content-length": "363",
+    "content-type": "application/json",
+    "accept-encoding": "gzip, deflate"
+  },
+  "path": "/",
+  "requestContext": {
+    "id": "2HDaIDwK7vwnJ0b5TkmhN6rZEQG",
+    "ts": "2022-11-07T11:53:45.830Z",
+    "pipeline_id": null,
+    "workflow_id": "p_mkCKaVA",
+    "deployment_id": "d_Zds82R7e",
+    "source_type": "COMPONENT",
+    "verified": false,
+    "hops": null,
+    "test": false,
+    "replay": false,
+    "owner_id": "u_zmhK04r",
+    "platform_version": "3.35.2",
+    "workflow_name": "RequestBin",
+    "resume": null,
+    "trace_id": "2HDaIDc0CEWt7lm2z4FvIK2gAu5"
+  },
+  "body": "eyJ1cGRhdGVfaWQiOjk3NjcyODk5NCwibWVzc2FnZSI6eyJtZXNzYWdlX2lkIjoxMDAzLCJmcm9tIjp7ImlkIjoxNjM0NDAxMjksImlzX2JvdCI6ZmFsc2UsImZpcnN0X25hbWUiOiLQvNCw0LrRgSIsInVzZXJuYW1lIjoiYnJpc2tvdmljIiwibGFuZ3VhZ2VfY29kZSI6ImVuIiwiaXNfcHJlbWl1bSI6dHJ1ZX0sImNoYXQiOnsiaWQiOjE2MzQ0MDEyOSwiZmlyc3RfbmFtZSI6ItC80LDQutGBIiwidXNlcm5hbWUiOiJicmlza292aWMiLCJ0eXBlIjoicHJpdmF0ZSJ9LCJkYXRlIjoxNjY3ODIyMDI1LCJ0ZXh0Ijoi0YvQtNCy0LvQsNC+In19",
+  "isBase64Encoded": true
+}
