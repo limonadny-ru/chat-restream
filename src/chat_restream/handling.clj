@@ -54,6 +54,4 @@
 
   (re-find 
     #"^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?)|(live\/))\??v?=?([^#&?]*).*"
-    "https://www.youtube.com/live/aNEOjZhcLxI?feature=share")
-  
-  )
+    "https://www.youtube.com/live/aNEOjZhcLxI?feature=share"))

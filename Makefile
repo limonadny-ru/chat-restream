@@ -1,7 +1,7 @@
 lint:
 	clj-kondo --lint src
 
-NAME = pauk-yf
+NAME = chat-restream
 
 NI_TAG = ghcr.io/graalvm/native-image:22.2.0
 
