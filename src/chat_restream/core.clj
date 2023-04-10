@@ -21,7 +21,7 @@
   [my-token chat-id admin-id]
   
   (let [config 
-        { :test-server true
+        { :test-server false
           :token my-token
           :chat-id (parse-long chat-id)
           :admin-id (parse-long admin-id)
