@@ -28,8 +28,7 @@
           :polling {:update-timeout 1000}
           }]
   (polling/run-polling config)
-  #_(lambda config)
-  ))
+  #_(lambda config)))
 
 (comment
   
@@ -38,7 +37,7 @@
                  clojure.java.io/reader)]
      
      (-main "...:..."))
-  
+
   
   (-main 
     (slurp "token")

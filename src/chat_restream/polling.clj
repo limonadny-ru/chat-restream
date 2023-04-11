@@ -56,7 +56,7 @@
         (if (seq updates) 
         
           (doseq [update updates]
-            (println update)
+            (prn update)
             (handling/the-handler config (:message update)))
           
           (handling/the-poller config))

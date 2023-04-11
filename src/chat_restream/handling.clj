@@ -1,7 +1,8 @@
 (ns chat-restream.handling
   (:require
     [tg-bot-api.telegram :as telegram]
-    [chat-restream.youtube :as youtube]))
+    [chat-restream.youtube :as youtube])
+  (:import java.time.LocalDateTime))
 
 
 (defn the-handler 
@@ -15,7 +16,6 @@
             (:text message)))]
     
     
-    
     (if (= 
           (-> message :from :id)
           (:admin-id config))
@@ -24,7 +24,7 @@
         (spit "stream" stream-id)
         (telegram/send-message config (-> message :chat :id) (str "Новый айди стрима: " stream-id)))
       
-      (telegram/send-message config (-> message :chat :id) "Вы не админ, не пишите мне"))))
+        (telegram/send-message config (-> message :chat :id) "Вы не админ, не пишите мне"))))
 
 
 (defn the-poller
@@ -43,11 +43,14 @@
         (telegram/send-message 
           config 
           (:chat-id config) 
-          (str (:author m) ": " (:message m)))
+          (str "_" (:author m) "_ " "\n" (:message m))
+          {:parse-mode "markdown"})
         
-        )
+        (println 
+          (subs (str (LocalDateTime/now)) 11 19) 
+          (str (:author m) ": " (:message m))))
       
-      new-messages)))
+      (sort-by :timestampUsec new-messages))))
 
 
 (comment
