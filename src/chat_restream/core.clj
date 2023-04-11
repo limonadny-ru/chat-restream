@@ -18,10 +18,10 @@
       (lambda/response->)))
 
 (defn -main
-  [my-token chat-id admin-id]
+  [my-token chat-id admin-id & {:keys [test-server] :or {test-server false}}]
   
   (let [config 
-        { :test-server false
+        { :test-server test-server
           :token my-token
           :chat-id (parse-long chat-id)
           :admin-id (parse-long admin-id)
@@ -41,8 +41,9 @@
   
   
   (-main 
-    "..."
+    (slurp "token")
     "-1005000345705"
-    "5000885090")
+    "5000885090"
+    {:test-server true})
   
   )

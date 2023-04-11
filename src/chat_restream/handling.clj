@@ -20,7 +20,7 @@
           (-> message :from :id)
           (:admin-id config))
       (do
-        (spit "state.edn" "")
+        (spit "timestamp" (* 1000 (System/currentTimeMillis)))
         (spit "stream" stream-id)
         (telegram/send-message config (-> message :chat :id) (str "Новый айди стрима: " stream-id)))
       

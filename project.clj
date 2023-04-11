@@ -15,7 +15,8 @@
    [http-kit             "2.6.0"]
    [cheshire             "5.10.0"]
    [link.lmnd/tg-bot-api "0.1.1"]
-   [etaoin               "1.0.40"]]
+   [etaoin               "1.0.40"]
+   [com.github.igrishaev/bogus "0.1.9"]]
 
   :main ^:skip-aot chat-restream.core
 
