@@ -15,3 +15,7 @@ state.edn
 stream
 TELEGRAM_OFFSET
 timestamp
+pin
+admin
+deploy/chat-restream
+chat

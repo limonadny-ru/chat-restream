@@ -1,7 +1,7 @@
 (defproject chat-restream "0.1.0-SNAPSHOT"
 
   :description
-  "Telegram Bot"
+  "Restream Youtube Live Chat to Telegram"
   
   :url
   "https://t.me/"

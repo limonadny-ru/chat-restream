@@ -3,7 +3,9 @@
     [cheshire.core :as json]
     [org.httpkit.client :as http]
     [clojure.set :as set]
-    [bogus.core :refer [debug]]))
+    [bogus.core :refer [debug]]
+    
+    [chat-restream.global :as global]))
 
 
 (defn poll-stream
@@ -16,7 +18,7 @@
          :liveChatTextMessageRenderer]
         
         state
-        (clojure.edn/read-string (slurp "state.edn"))
+        (clojure.edn/read-string (global/read :state.edn))
         
         html 
         (:body
@@ -80,7 +82,7 @@
         (set/difference (set simple-messages) (set state))
         
         s
-        (spit "state.edn" simple-messages)]
+        (global/write! :state.edn simple-messages)]
     (println diff)
     diff))
 

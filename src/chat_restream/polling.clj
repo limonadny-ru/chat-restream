@@ -1,7 +1,10 @@
 (ns chat-restream.polling
   (:require 
     [tg-bot-api.telegram :as telegram]
+    
     [chat-restream.handling :as handling]
+    [chat-restream.global :as global]
+    
     [cheshire.core :as json]))
 
 

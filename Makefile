@@ -3,6 +3,8 @@ lint:
 
 NAME = chat-restream
 
+DEPLOY = deploy/${NAME}
+
 NI_TAG = ghcr.io/graalvm/native-image:22.2.0
 
 NI_ARGS = \
@@ -71,4 +73,22 @@ deploy: upload-version deploy-version
 set-webhook:
 	curl 'https://api.telegram.org/bot$(token)/setWebhook?url=https://functions.yandexcloud.net/$(id)'
 
-all: bash-package deploy
+
+pack: uberjar
+	mkdir ${DEPLOY}
+	touch ${DEPLOY}/chat
+	touch ${DEPLOY}/stream
+	touch	${DEPLOY}/admin
+	touch ${DEPLOY}/pin
+	touch ${DEPLOY}/state.edn
+	echo "[]" >> ${DEPLOY}/state.edn
+	cp ${JAR} ${DEPLOY}
+	open ${DEPLOY}
+
+clean:
+	rm -rf ${DEPLOY}
+
+all: clean pack
+
+
+

@@ -3,8 +3,12 @@
   (:require
     [chat-restream.polling  :as polling]
     [chat-restream.lambda   :as lambda]
+    [chat-restream.global   :as global]
+    
     [clojure.string    :as str]
-    [cheshire.core     :as json]))
+    [cheshire.core     :as json]
+    
+    ))
 
 
 (defn polling
@@ -18,17 +22,20 @@
       (lambda/response->)))
 
 (defn -main
-  [my-token chat-id admin-id & {:keys [test-server] :or {test-server false}}]
-  
+  [my-token & {:keys [test-server] :or {test-server false}}]
   (let [config 
         { :test-server test-server
           :token my-token
-          :chat-id (parse-long chat-id)
-          :admin-id (parse-long admin-id)
           :polling {:update-timeout 1000}
-          }]
-  (polling/run-polling config)
-  #_(lambda config)))
+          }
+        pin (format "%06d" (rand-int 999999))]
+    (if-not (global/some? :admin)
+      (global/write! :pin pin))
+    
+    (println "Отправьте боту пин-код: " (global/read :pin))
+      
+    (polling/run-polling config)
+    #_(lambda config)))
 
 (comment
   
@@ -41,8 +48,9 @@
   
   (-main 
     (slurp "token")
-    "-1005000345705"
-    "5000885090"
     {:test-server true})
+  
+
+  
   
   )
