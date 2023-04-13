@@ -3,12 +3,13 @@
   (:require
     [chat-restream.polling  :as polling]
     [chat-restream.lambda   :as lambda]
+    [chat-restream.handling :as handling]
     [chat-restream.global   :as global]
     
     [clojure.string    :as str]
     [cheshire.core     :as json]
     
-    ))
+    [clj-socketio-client.core :as sio]))
 
 
 (defn polling
@@ -22,16 +23,32 @@
       (lambda/response->)))
 
 (defn -main
-  [my-token & {:keys [test-server] :or {test-server false}}]
+  [tg-token da-token 
+   & {:keys [test-server] :or {test-server false}}]
   (let [config 
         { :test-server test-server
-          :token my-token
+          :token tg-token
           :polling {:update-timeout 1000}
           }
-        pin (format "%06d" (rand-int 999999))]
+        
+        pin 
+        (format "%06d" (rand-int 999999))
+        
+        s
+        (sio/make-socket 
+              "https://socket.donationalerts.ru:443" 
+              {:transports ["websocket"]} 
+              {:donation
+               (fn [& args] (handling/donation-handler config
+                              (json/parse-string (apply str args) true)))})]
+    (sio/emit!
+      s
+      :add-user 
+      {:token (slurp "da-token")
+       :type "alert_widget"})
+    
     (if-not (global/some? :admin)
       (global/write! :pin pin))
-    
     (println "Отправьте боту пин-код: " (global/read :pin))
       
     (polling/run-polling config)
@@ -45,12 +62,8 @@
      
      (-main "...:..."))
 
-  
+  (global/touch :da-token)
   (-main 
     (slurp "token")
-    {:test-server true})
-  
-
-  
-  
-  )
+    (slurp "da-token")
+    {:test-server true}))

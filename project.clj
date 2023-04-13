@@ -1,4 +1,4 @@
-(defproject chat-restream "0.1.0-SNAPSHOT"
+(defproject chat-restream "0.2.0"
 
   :description
   "Restream Youtube Live Chat to Telegram"
@@ -16,7 +16,8 @@
    [cheshire             "5.10.0"]
    [link.lmnd/tg-bot-api "0.1.1"]
    [etaoin               "1.0.40"]
-   [com.github.igrishaev/bogus "0.1.9"]]
+   [com.github.igrishaev/bogus "0.1.9"]
+   [org.clojars.rockchalkjay/clj-socketio-client "0.1.1"]]
 
   :main ^:skip-aot chat-restream.core
 

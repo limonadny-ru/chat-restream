@@ -12,6 +12,8 @@
     (global/read :admin)))
 
 
+
+
 (defn the-handler 
   "Bot logic here"
   [config message]
@@ -74,9 +76,7 @@
       
           (telegram/send-message 
             config 
-            (if (global/some? :chat)
-                (global/read :chat)
-                (global/read :admin)) 
+            (global/recipient) 
             (str "<i>" (:author m) "</i> " "\n" (:message m))
             {:parse-mode "html"})
           
@@ -85,6 +85,24 @@
             (str (:author m) ": " (:message m))))
         
         (sort-by :timestampUsec new-messages)))))
+
+
+
+(defn donation-handler
+  [config {:keys [username
+                  amount_formatted
+                  currency
+                  message]}]
+  
+  (telegram/send-message
+    config
+    (global/recipient)
+    (str
+      "🧧 "
+      username " — " amount_formatted " " currency "\n\n"
+      message)))
+
+
 
 
 (comment
